@@ -18,7 +18,7 @@ jobs:
           arguments: build -x test -x check publish
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
-          repo_token: ${{ secrets.POIPATH_RELEASE_TOKEN }}
+          repo_token: ${{ secrets.VC_RELEASE_TOKEN }}
           prerelease: false
           files: |
             .build/libs/*.jar

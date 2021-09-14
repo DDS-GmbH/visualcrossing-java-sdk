@@ -1,0 +1,58 @@
+package visualcrossing;
+
+import com.docutools.visualcrossing.*;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import java.time.Instant;
+
+@DisplayName("Query historical temperature")
+public class QueryHistoricalWeather {
+
+    private String key;
+
+    @BeforeEach
+    void setup() {
+        key = System.getenv("VC_KEY");
+    }
+
+    @Test
+    @DisplayName("Get temperature for Vienna, AUT for christmas 2020")
+    void shouldGetViennaTempForChristmas2020() {
+        // Arrange
+        String streetAddress = "Stephansplatz 1";
+        String zipCode = "1010";
+        String country = "AT";
+        Instant date = Instant.parse("2020-12-15T13:00:00Z");
+
+        VisualCrossingClient vcc = VisualCrossingClient.builder()
+                .apiKey(key)
+                .build();
+
+        VisualCrossingRequest request = VisualCrossingRequest.builder()
+                .address(String.format("%s, %s %s", streetAddress, zipCode, country))
+                .timestamp(date)
+                .elements("temp")
+                .include(VisualCrossingSections.DAYS)
+                .unitGroup(VisualCrossingUnitGroups.METRIC)
+                .build();
+
+        // Act
+        VisualCrossingResponse response = vcc.execute(request);
+
+        // Assert
+        Assertions.assertNotNull(response);
+        Assertions.assertEquals(1, response.queryCost());
+
+        DayRecording[] days = response.days();
+        Assertions.assertNotNull(days);
+        Assertions.assertEquals(1, days.length);
+
+        DayRecording day = days[0];
+        Assertions.assertNotNull(day);
+        Assertions.assertEquals(3.7, day.temp());
+    }
+
+}

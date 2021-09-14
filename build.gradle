@@ -1,0 +1,60 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+}
+
+group 'com.docutools'
+version '1.1-SNAPSHOT'
+
+sourceCompatibility = 16
+targetCompatibility = 16
+
+repositories {
+    mavenCentral()
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId = 'visualcrossing-sdk'
+            from components.java
+            versionMapping {
+                usage('java-api') {
+                    fromResolutionOf('runtimeClasspath')
+                }
+                usage('java-runtime') {
+                    fromResolutionResult()
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url "https://maven.pkg.github.com/DDS-GmbH/visualcrossing-java-sdk"
+            credentials {
+                username = "codecitizen"
+                password = project.findProperty("GITHUB_TOKEN") ?: System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
+}
+
+java {
+    withSourcesJar()
+    withJavadocJar()
+}
+
+test {
+    useJUnitPlatform()
+}
+
+dependencies {
+    implementation 'com.google.code.gson:gson:2.8.8'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+}
+
+test {
+    useJUnitPlatform()
+}

@@ -33,7 +33,7 @@ public class QueryHistoricalWeather {
         VisualCrossingRequest request = VisualCrossingRequest.builder()
                 .address(String.format("%s, %s %s", streetAddress, zipCode, country))
                 .timestamp(date)
-                .elements("temp")
+                .elements("temp", "description", "icon")
                 .include(VisualCrossingSections.DAYS)
                 .unitGroup(VisualCrossingUnitGroups.METRIC)
                 .build();
@@ -52,6 +52,8 @@ public class QueryHistoricalWeather {
         DayRecording day = days[0];
         Assertions.assertNotNull(day);
         Assertions.assertEquals(3.7, day.getTemp());
+        Assertions.assertEquals("clear-day", day.getIcon());
+        Assertions.assertEquals("Clear conditions throughout the day.", day.getDescription());
     }
 
 }

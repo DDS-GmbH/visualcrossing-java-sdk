@@ -12,6 +12,7 @@ public class DayRecording {
     private final Double humidity;
     private final Double pressure;
     private final Double snow;
+    private final String icon;
 
     public DayRecording(JSONObject object) {
         cloudcover = object.optDouble("cloudcover");
@@ -22,6 +23,7 @@ public class DayRecording {
         humidity = object.optDouble("humidity");
         pressure = object.optDouble("pressure");
         snow = object.optDouble("snow");
+        icon = object.optString("icon");
     }
 
     public Double getCloudcover() {
@@ -54,5 +56,9 @@ public class DayRecording {
 
     public Double getSnow() {
         return snow;
+    }
+
+    public String getIcon() {
+        return icon;
     }
 }

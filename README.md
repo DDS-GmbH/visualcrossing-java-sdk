@@ -6,7 +6,7 @@ Simple Java SDK for [the visual crossing weather API](https://www.visualcrossing
 
 The current version is hosted on Github Packages:
 
-```maven
+```xml
 <dependency>
     <groupId>com.docutools</groupId>
     <artifactId>visualcrossing-sdk</artifactId>
@@ -16,6 +16,7 @@ The current version is hosted on Github Packages:
 
 ```gradle
 implementation group: "com.docutools", name: "visualcrossing-sdk", version: "2022-01-12"
+```
 
 ## Usage
 

@@ -10,7 +10,7 @@ The current version is hosted on Github Packages:
 <dependency>
     <groupId>com.docutools</groupId>
     <artifactId>visualcrossing-sdk</artifactId>
-    <version>2022-01-12</version>
+    <version>1.1.1</version>
 </dependency>
 ```
 

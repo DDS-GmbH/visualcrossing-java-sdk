@@ -3,7 +3,7 @@ plugins {
     id 'maven-publish'}
 
 group 'com.docutools'
-version '2021-09-13'
+version '2022-01-12'
 sourceCompatibility = 8
 targetCompatibility = 8
 

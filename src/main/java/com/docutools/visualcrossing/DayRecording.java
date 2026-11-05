@@ -8,6 +8,8 @@ public class DayRecording {
     private final String conditions;
     private final String description;
     private final Double temp;
+    private final Double tempmin;
+    private final Double tempmax;
     private final Double feelslike;
     private final Double humidity;
     private final Double pressure;
@@ -19,6 +21,8 @@ public class DayRecording {
         conditions = object.optString("conditions");
         description = object.optString("description");
         temp = object.optDouble("temp");
+        tempmin = object.optDouble("tempmin");
+        tempmax = object.optDouble("tempmax");
         feelslike = object.optDouble("feelslike");
         humidity = object.optDouble("humidity");
         pressure = object.optDouble("pressure");
@@ -40,6 +44,14 @@ public class DayRecording {
 
     public Double getTemp() {
         return temp;
+    }
+
+    public Double getTempmin() {
+        return tempmin;
+    }
+
+    public Double getTempmax() {
+        return tempmax;
     }
 
     public Double getFeelslike() {
